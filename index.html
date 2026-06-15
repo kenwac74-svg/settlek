@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SettleK | Life Incubator</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; }
+        .font-signature { font-family: 'Caveat', cursive; }
+        
+        #navbar { transition: all 0.3s ease; }
+        .nav-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .nav-top { background-color: transparent; padding-top: 1rem; padding-bottom: 1rem; }
+        
+        .logo-scrolled { color: #134e4a !important; }
+        .logo-k-scrolled { color: #2563eb !important; }
+        
+        .menu-scrolled { color: #475569 !important; }
+        .menu-scrolled:hover { color: #0f766e !important; }
+        
+        .btn-scrolled { background-color: #115e59 !important; color: white !important; }
+        .btn-scrolled:hover { background-color: #0f766e !important; }
+
+        @keyframes subtle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15%); }
+        }
+        .animate-subtle-bounce {
+            animation: subtle-bounce 2s ease-in-out infinite;
+        }
+
+        details summary::-webkit-details-marker { display: none; }
+        details[open] summary i { transform: rotate(180deg); }
+        
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* 스크롤바 숨기기 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <!-- GitHub Pages asset note: ZIP-provided images are served from assets/images. External CDN scripts/fonts remain unchanged. -->
+</head>
+<body class="min-h-screen bg-[#F8FAFC] text-slate-800 selection:bg-teal-200 selection:text-teal-900">
+
+    <nav id="navbar" class="fixed w-full z-50 nav-top">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <span id="logo-text" class="text-3xl font-extrabold tracking-tighter text-white transition-colors">
+                        SETTLE<span id="logo-k" class="text-teal-300 transition-colors">K</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex space-x-10 items-center h-full">
+                    <a href="#home" class="nav-link text-sm font-semibold tracking-wide transition-colors text-teal-50 hover:text-white">Home</a>
+                    
+                    <div class="relative group py-5 h-full flex items-center">
+                        <a href="#about-us" class="nav-link flex items-center gap-1 text-sm font-semibold tracking-wide transition-colors text-teal-50 hover:text-white cursor-pointer">
+                            About Us <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+                        </a>
+                        <div class="absolute left-1/2 -translate-x-1/2 top-[calc(100%-0.5rem)] w-48 bg-white rounded-xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 z-50">
+                            <div class="p-2">
+                                <a href="#about-us" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-teal-600 font-semibold rounded-lg transition-colors">CEO Message</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#solutions" class="nav-link text-sm font-semibold tracking-wide transition-colors text-teal-50 hover:text-white">Solutions</a>
+                    <a href="#track-record" class="nav-link text-sm font-semibold tracking-wide transition-colors text-teal-50 hover:text-white">Track Record</a>
+                    
+                    <div class="relative group py-5 h-full flex items-center">
+                        <a href="#visa" class="nav-link flex items-center gap-1 text-sm font-semibold tracking-wide transition-colors text-teal-50 hover:text-white cursor-pointer">
+                            Visa <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+                        </a>
+                        <div class="absolute left-1/2 -translate-x-1/2 top-[calc(100%-0.5rem)] w-48 bg-white rounded-xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 z-50">
+                            <div class="p-2">
+                                <a href="#visa" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-teal-600 font-semibold rounded-lg transition-colors">E-6 (예술·흥행)</a>
+                                <a href="#visa" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-teal-600 font-semibold rounded-lg transition-colors">E-7 (전문직)</a>
+                                <a href="#visa" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-teal-600 font-semibold rounded-lg transition-colors">E-8 (계절근로)</a>
+                                <a href="#visa" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-teal-600 font-semibold rounded-lg transition-colors">E-10 (선원)</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contact-form" id="nav-btn" class="px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-white text-teal-900 hover:bg-teal-50 shadow-md">
+                        문의하기
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="focus:outline-none text-white transition-colors">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full border-b border-slate-100 shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-4 py-3 text-slate-700 font-semibold hover:bg-teal-50 hover:text-teal-700 rounded-xl">Home</a>
+                <div class="block px-4 py-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">About Us</span>
+                    <a href="#about-us" class="block py-2 text-slate-700 font-semibold hover:text-teal-700 pl-3 border-l-2 border-slate-100 hover:border-teal-500 transition-colors">CEO Message</a>
+                </div>
+                <a href="#solutions" class="block px-4 py-3 text-slate-700 font-semibold hover:bg-teal-50 hover:text-teal-700 rounded-xl">Solutions</a>
+                <a href="#track-record" class="block px-4 py-3 text-slate-700 font-semibold hover:bg-teal-50 hover:text-teal-700 rounded-xl">Track Record</a>
+                <div class="block px-4 py-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Visa</span>
+                    <a href="#visa" class="block py-2 text-slate-700 font-semibold hover:text-teal-700 pl-3 border-l-2 border-slate-100 hover:border-teal-500 transition-colors">E-6 (예술·흥행)</a>
+                    <a href="#visa" class="block py-2 text-slate-700 font-semibold hover:text-teal-700 pl-3 border-l-2 border-slate-100 hover:border-teal-500 transition-colors">E-7 (전문직)</a>
+                    <a href="#visa" class="block py-2 text-slate-700 font-semibold hover:text-teal-700 pl-3 border-l-2 border-slate-100 hover:border-teal-500 transition-colors">E-8 (계절근로)</a>
+                    <a href="#visa" class="block py-2 text-slate-700 font-semibold hover:text-teal-700 pl-3 border-l-2 border-slate-100 hover:border-teal-500 transition-colors">E-10 (선원)</a>
+                </div>
+                <a href="#contact-form" class="block px-4 py-3 text-slate-700 font-semibold hover:bg-teal-50 hover:text-teal-700 rounded-xl">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex flex-col items-center justify-center min-h-[90vh] bg-slate-900 overflow-hidden z-0">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1541888071853-92f58fc4219c?auto=format&fit=crop&q=80&w=2000" alt="" class="w-full h-full object-cover opacity-20" />
+            <div class="absolute inset-0 bg-gradient-to-b from-teal-950/80 via-slate-900/90 to-slate-900"></div>
+            <div class="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-teal-600/30 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-blue-600/20 rounded-full blur-[100px]"></div>
+        </div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-600 shadow-lg shadow-teal-900/50 mb-8">
+                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                <span class="text-white text-xs sm:text-sm font-bold tracking-widest uppercase">대한민국 NO.1 외국인 인력 파견 기업</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-8">
+                단순한 인력 매칭을 넘어, <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-300">Life Incubator</span>가 되다
+            </h1>
+            <p class="mt-6 text-lg md:text-2xl text-slate-300 max-w-4xl mx-auto text-center font-light leading-relaxed mb-12 break-keep">
+                신뢰받는 외국인 인력 파견 기업으로, <br class="hidden md:inline" />
+                SettleK는 외국인 근로자가 한국 사회의 당당한 구성원으로 성장하도록 돕습니다. <br class="hidden md:inline" />
+                국제 표준 검증과 24시간 밀착 케어 시스템으로 <strong class="font-bold text-white">이탈율 0%</strong>의 든든한 파트너가 되겠습니다.
+            </p>
+            <div class="flex flex-col items-center justify-center gap-3">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                    <a href="#contact-form" class="w-full sm:w-auto px-8 py-4 bg-teal-500 hover:bg-teal-400 text-slate-900 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(20,184,166,0.4)] hover:shadow-[0_0_30px_rgba(20,184,166,0.6)] transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        기업 맞춤 인재 상담하기
+                    </a>
+                    <a href="#about-us" class="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white backdrop-blur-sm rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2">
+                        서비스 소개서 보기
+                    </a>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">✓ 24시간 이내 담당자가 매칭 상담을 도와드립니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visa Section (Full-Bleed Image Cards) -->
+    <section id="visa" class="w-full bg-slate-900 border-t border-slate-800 relative z-10">
+        <div class="w-full">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-[1px] bg-slate-800 w-full overflow-hidden">
+                <!-- E-6 Card -->
+                <div class="relative h-[600px] w-full overflow-hidden group">
+                    <img src="assets/images/photo-1516450360452-9312f5e86fc7.avif" alt="E-6 예술·흥행 인력" class="w-full h-full object-cover absolute inset-0 transform group-hover:scale-105 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-10 flex flex-col justify-end z-10">
+                        <span class="text-[#11CAA0] font-bold text-sm tracking-widest uppercase mb-2">VISA E-6</span>
+                        <h4 class="text-2xl font-bold text-white mb-3 tracking-tight whitespace-nowrap">글로벌 전문 인력</h4>
+                        <p class="text-slate-300 font-light leading-relaxed mb-6 text-sm">
+                            K-POP, 모델, 공연, 스포츠 등 고부가가치 엔터테인먼트 및 예술 분야에 특화된 글로벌 전문 인력.
+                        </p>
+                        <div class="w-full flex justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-white"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-7 Card -->
+                <div class="relative h-[600px] w-full overflow-hidden group">
+                    <img src="assets/images/photo-1504328345606-18bbc8c9d7d1.avif" alt="E-7 전문직 노동자" class="w-full h-full object-cover absolute inset-0 transform group-hover:scale-105 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-10 flex flex-col justify-end z-10">
+                        <span class="text-[#11CAA0] font-bold text-sm tracking-widest uppercase mb-2">VISA E-7</span>
+                        <h4 class="text-2xl font-bold text-white mb-3 tracking-tight whitespace-nowrap">해외 전문 인력</h4>
+                        <p class="text-slate-300 font-light leading-relaxed mb-6 text-sm">
+                            용접, 도장, 전기 등 기업의 핵심 기술 분야에 즉시 투입 가능한 검증된 해외 전문 인력.
+                        </p>
+                        <div class="w-full flex justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-white"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-8 Card -->
+                <div class="relative h-[600px] w-full overflow-hidden group">
+                    <img src="assets/images/photo-1500937386664-56d1dfef3854.avif" alt="E-8 계절 근로자" class="w-full h-full object-cover absolute inset-0 transform group-hover:scale-105 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-10 flex flex-col justify-end z-10">
+                        <span class="text-[#11CAA0] font-bold text-sm tracking-widest uppercase mb-2">VISA E-8</span>
+                        <h4 class="text-2xl font-bold text-white mb-3 tracking-tight whitespace-nowrap">단기 집중 근로 인력</h4>
+                        <p class="text-slate-300 font-light leading-relaxed mb-6 text-sm">
+                            농어촌의 극심한 인력난 해소를 위해 파견되는 성실하고 건강한 단기 집중 근로 인력.
+                        </p>
+                        <div class="w-full flex justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-white"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-10 Card -->
+                <div class="relative h-[600px] w-full overflow-hidden group">
+                    <img src="assets/images/professional-maritime-worker.jpg" alt="거대한 선박과 해양 환경에서 일하는 선원 근로자" class="w-full h-full object-cover absolute inset-0 transform group-hover:scale-105 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-10 flex flex-col justify-end z-10">
+                        <span class="text-[#11CAA0] font-bold text-sm tracking-widest uppercase mb-2">VISA E-10</span>
+                        <h4 class="text-2xl font-bold text-white mb-3 tracking-tight whitespace-nowrap">전문 해운 인력</h4>
+                        <p class="text-slate-300 font-light leading-relaxed mb-6 text-sm">
+                            연근해어선, 크루즈 등 특수한 해양 작업 환경에서 활동할 수 있는 전문 해운 인력.
+                        </p>
+                        <div class="w-full flex justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us (CEO Message / Philosophy) Section -->
+    <section id="about-us" class="py-24 lg:py-32 bg-white overflow-hidden border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-20 items-center">
+                <div class="lg:w-1/2 relative w-full max-w-md lg:max-w-none mx-auto">
+                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl relative z-10 bg-slate-100 group">
+                        <img src="https://images.unsplash.com/photo-1507005311169-aa6fed036d74?auto=format&fit=crop&q=80&w=800" alt="SettleK CEO" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+                    <div class="absolute top-10 -left-10 w-full h-full border-2 border-teal-100 rounded-[2rem] -z-10 hidden md:block"></div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-[3px] bg-teal-500 rounded-full"></div>
+                        <h2 class="text-sm font-extrabold text-teal-600 tracking-widest uppercase">CEO Message</h2>
+                    </div>
+                    
+                    <div class="relative mb-10">
+                        <i data-lucide="quote" class="w-20 h-20 text-teal-50 absolute -top-8 -left-6 -z-10 fill-current transform -rotate-6"></i>
+                        <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.3] tracking-tight">
+                            "<span class="text-[#11CAA0] font-black">외국인 근로자가 <br/>한국에 잘 정착할 때,</span>"<br/>
+                            기업도 성장합니다.
+                        </h3>
+                    </div>
+                    
+                    <div class="space-y-8 text-lg text-slate-600 leading-relaxed font-light">
+                        <p>낯선 땅 한국에서 새로운 기회를 찾기 위해 용기 내어 찾아온 외국인 근로자 여러분, 그리고 훌륭한 인재와 함께 도약하고자 하는 기업 관계자 여러분을 진심으로 환영합니다.</p>
+                        <p><strong class="font-bold text-slate-900">SettleK</strong>는 단순한 인력 송출 기업이 아닙니다. 비자 행정부터 세무, 보험, 주거지 마련, 아플 때 필요한 병원 매칭과 휴식을 위한 여행 가이드까지, 한국 생활의 시작과 끝을 책임지는 <strong class="font-bold text-teal-700 bg-teal-50 px-1 rounded">라이프 인큐베이터</strong>입니다.</p>
+                        <p>그들의 한국 생활이 외롭지 않도록, SettleK가 든든한 가족이자 전문가로서 가장 가까운 곳에서 <strong class="font-bold text-teal-700">동행</strong>하겠습니다.</p>
+                    </div>
+                    
+                    <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col gap-1">
+                        <div class="flex items-baseline gap-3">
+                            <p class="text-xl font-bold text-slate-900">SettleK 대표 김세호</p>
+                            <p class="text-sm font-bold text-teal-600 uppercase tracking-wider">CEO & Founder</p>
+                        </div>
+                        <p class="text-sm font-medium text-slate-400 tracking-wide mt-1">SettleK Life Incubator Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-24 lg:py-32 bg-[#F8FAFC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 rounded-[2.5rem] px-6 py-16 mb-20 max-w-4xl mx-auto text-center shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-blue-500"></div>
+                <h2 class="text-sm font-bold text-teal-400 tracking-widest uppercase mb-4">Life-Care Solution</h2>
+                <h3 class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">SettleK만의 차별화된 4대 시스템</h3>
+                <p class="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto">생산성 증대와 고용 안정화를 이끄는 완벽한 케어 매뉴얼</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+                <!-- Card 1 -->
+                <div class="group flex flex-col bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-slate-100 hover:border-[#11CAA0] h-full relative overflow-hidden">
+                    <div class="w-16 h-16 bg-blue-50 group-hover:bg-blue-600 text-blue-600 group-hover:text-white transition-colors rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="book-open" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-extrabold text-slate-900 mb-8 leading-tight">Education<br/>System</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-medium flex-1 flex flex-col justify-start">
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">출국 전 충분한 사전 교육</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">동영상 기반 높은 수준의 한국어</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">한국 문화 및 사회의 완벽한 이해</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">한국인 기술자 직강 기술 습득</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group flex flex-col bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-slate-100 hover:border-[#11CAA0] h-full relative overflow-hidden">
+                    <div class="w-16 h-16 bg-teal-50 group-hover:bg-teal-600 text-teal-600 group-hover:text-white transition-colors rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-extrabold text-slate-900 mb-8 leading-tight">Thorough<br/>Monitoring</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-medium flex-1 flex flex-col justify-start">
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">파견직원 근로 안전 정기 방문</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">이탈 방지 정기 방문 점검</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">현지 가족 및 지인 대상 모니터링</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">체계적인 파견 근로자 그룹장 운영</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group flex flex-col bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-slate-100 hover:border-[#11CAA0] h-full relative overflow-hidden">
+                    <div class="w-16 h-16 bg-rose-50 group-hover:bg-rose-500 text-rose-500 group-hover:text-white transition-colors rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="heart" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-extrabold text-slate-900 mb-8 leading-tight">Emotional<br/>Touch</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-medium flex-1 flex flex-col justify-start">
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">K-POP, 유적지 등 한국문화 체험</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">성실근로자 동기부여 및 비전 제시</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">한국 입국 시 따뜻한 환영행사</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">우수 근무자 휴가 및 항공권 지원</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group flex flex-col bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-slate-100 hover:border-[#11CAA0] h-full relative overflow-hidden">
+                    <div class="w-16 h-16 bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white transition-colors rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="phone-call" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-extrabold text-slate-900 mb-8 leading-tight">24 Hour<br/>Care System</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-medium flex-1 flex flex-col justify-start">
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">이슈 발생 시 24시간 즉각 대응</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">한국 내 전담 총괄 컨트롤 센터 운영</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">노동부 공무원 출신 전담 인력 배치</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-teal-600 stroke-[3]"></i>
+                            </div>
+                            <span class="leading-relaxed">근로자 1:1 맞춤형 캐어 담당자 배정</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Network Section -->
+    <section id="global-network" class="py-32 bg-slate-900 relative overflow-hidden w-full border-t border-slate-800">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1589561253810-618be25338ab?auto=format&fit=crop&q=80&w=1200" alt="Global Network Background" class="w-full h-full object-cover opacity-20 mix-blend-luminosity" />
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/40"></div>
+        </div>
+
+        <div class="max-w-[1440px] mx-auto px-6 relative z-10">
+            <div class="max-w-3xl mb-16 text-center md:text-left">
+                <h2 class="text-sm font-bold text-teal-400 tracking-[0.2em] uppercase mb-4">Global Direct Sourcing</h2>
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">전 세계 10개국, <br class="hidden md:block"/>압도적인 글로벌 인프라</h3>
+                <p class="text-lg md:text-xl text-slate-300 font-light leading-relaxed">
+                    대한민국 본사를 거점으로 베트남, 태국 등 4개국 지사와 6개국 파트너사를 통해 검증된 글로벌 인재를 가장 빠르고 안전하게 송출합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
+                    <h4 class="text-2xl font-bold text-white mb-6">대한민국</h4>
+                    <p class="text-teal-400 font-semibold uppercase tracking-wider text-sm mb-3">[HQ] 서울 본사</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">모든 컨트롤 타워 역할 및 24시간 국내 밀착 캐어 센터 운영</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
+                    <h4 class="text-2xl font-bold text-white mb-6">4개국 지사</h4>
+                    <p class="text-teal-400 font-semibold uppercase tracking-wider text-sm mb-3">[Branch] 직접 운영</p>
+                    <p class="text-slate-300 font-medium mb-2">베트남, 태국, 캄보디아, 중국</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">현지 교육 센터 운영 및 1차 사전 검증 진행</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-10 hover:bg-white/15 transition-all duration-300">
+                    <h4 class="text-2xl font-bold text-white mb-6">6개국 파트너</h4>
+                    <p class="text-teal-400 font-semibold uppercase tracking-wider text-sm mb-3">[Partner] 독점 제휴</p>
+                    <p class="text-slate-300 font-medium mb-2">인도네시아, 필리핀, 우즈벡, 몽골, 라오스, 미얀마</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">각국 노동부 및 주요 기관과의 긴밀한 협력 네트워크</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Press Section -->
+    <section id="news-room" class="py-32 bg-white">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-teal-600 tracking-widest uppercase mb-4">News & Press</h2>
+                <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">SettleK의 최신 소식</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- News Card 1 -->
+                <a href="#" class="group block bg-white rounded-2xl border border-slate-200 overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&q=80&w=600" alt="비즈니스 악수" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <p class="text-sm font-semibold text-slate-500 mb-3"><span class="text-teal-600 font-bold">[보도자료]</span> | 2026. 01. 15</p>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4 leading-snug group-hover:text-teal-600 transition-colors">인도네시아 노동부와 8만 명 송출 독점 MOU 체결</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm mt-auto">단일 규모 최대, SettleK가 인도네시아 정부와 공식 협약을 맺고 글로벌 인력 공급의 새로운 표준을 세웠습니다.</p>
+                    </div>
+                </a>
+
+                <!-- News Card 2 -->
+                <a href="#" class="group block bg-white rounded-2xl border border-slate-200 overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="assets/images/photo-1460925895917-afdab827c52f.avif" alt="데이터 네트워크" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <p class="text-sm font-semibold text-slate-500 mb-3"><span class="text-teal-600 font-bold">[공지사항]</span> | 2026. 03. 10</p>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4 leading-snug group-hover:text-teal-600 transition-colors">외국인 근로자 24시간 스마트 관제 시스템 특허 출원</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm mt-auto">이탈률 0%를 가능하게 한 SettleK만의 독자적인 AI 기반 밀착 케어 시스템이 기술력을 인정받았습니다.</p>
+                    </div>
+                </a>
+
+                <!-- News Card 3 -->
+                <a href="#" class="group block bg-white rounded-2xl border border-slate-200 overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="assets/images/photo-1581091226825-a6a2a5aee158.avif" alt="산업 현장" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <p class="text-sm font-semibold text-slate-500 mb-3"><span class="text-teal-600 font-bold">[보도자료]</span> | 2026. 05. 20</p>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4 leading-snug group-hover:text-teal-600 transition-colors">하반기 조선업 전문인력(E-7) 500명 1차 송출 확정</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm mt-auto">한화오션 및 삼성중공업 협력사를 대상으로 한 숙련기능인력 배치가 성공적으로 진행 중입니다.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- View All Button -->
+            <div class="mt-16 flex justify-center">
+                <a href="/news" class="inline-flex items-center gap-2 px-8 py-3.5 bg-teal-700 hover:bg-teal-800 text-white font-bold text-lg rounded-full shadow-md hover:shadow-lg transform transition-all duration-300 hover:-translate-y-1">
+                    최신 소식 전체보기 <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Track Record Section -->
+    <section id="track-record" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3 mb-4 justify-center">
+                <i data-lucide="trending-up" class="w-6 h-6 text-teal-600 animate-bounce"></i>
+                <h2 class="text-sm font-bold text-teal-600 tracking-widest uppercase">Proven Track Record</h2>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-extrabold text-center text-slate-900 mb-10">주요 인력 도입 실적</h3>
+            
+            <div class="mb-12 bg-teal-600 rounded-3xl p-8 text-center shadow-xl transform transition hover:-translate-y-1">
+                <p class="text-teal-100 font-semibold mb-2 tracking-widest uppercase text-sm">2025 Special Achievement</p>
+                <h4 class="text-3xl md:text-4xl font-black text-white mb-3">인도네시아 노동부 80,000명 송출 독점 MOU 체결</h4>
+                <p class="text-teal-50 text-lg">단일 규모 최대, 대한민국 인력 공급의 새로운 표준을 만듭니다.</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-3xl p-1 border border-slate-200 overflow-x-auto shadow-sm">
+                <table class="w-full text-left border-collapse min-w-[800px]">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-sm font-semibold uppercase tracking-wider">
+                            <th class="p-6 rounded-tl-2xl">진행 시기</th>
+                            <th class="p-6">취업 분야</th>
+                            <th class="p-6">송출 국가</th>
+                            <th class="p-6">주요 고객사</th>
+                            <th class="p-6 rounded-tr-2xl text-right">도입 인원</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700">
+                        <tr class="border-b border-slate-200 hover:bg-white transition-colors">
+                            <td class="p-6 py-8 font-medium">2022년</td>
+                            <td class="p-6 py-8">선박 도장공, 전기원</td>
+                            <td class="p-6 py-8"><span class="inline-block px-4 py-1.5 bg-teal-100 text-teal-800 rounded-full text-xs font-bold">베트남</span></td>
+                            <td class="p-6 py-8 text-slate-600"><span class="font-bold text-slate-900">대우조선, 현대중공업</span> 등</td>
+                            <td class="p-6 py-8 text-right"><span class="font-black text-3xl text-teal-600">50</span><span class="text-sm font-medium text-slate-500 ml-1">명</span></td>
+                        </tr>
+                        <tr class="border-b border-slate-200 hover:bg-white transition-colors">
+                            <td class="p-6 py-8 font-medium">2023년</td>
+                            <td class="p-6 py-8">조선 용접공, 도장공 등</td>
+                            <td class="p-6 py-8">
+                                <div class="flex gap-2 flex-wrap">
+                                    <span class="inline-block px-4 py-1.5 bg-teal-100 text-teal-800 rounded-full text-xs font-bold">베트남</span>
+                                    <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">우즈벡</span>
+                                </div>
+                            </td>
+                            <td class="p-6 py-8 text-slate-600"><span class="font-bold text-slate-900">한화오션,</span> SK오션플랜트 협력사 등</td>
+                            <td class="p-6 py-8 text-right"><span class="font-black text-3xl text-teal-600">160</span><span class="text-sm font-medium text-slate-500 ml-1">명</span></td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="p-6 py-8 font-medium">2024년</td>
+                            <td class="p-6 py-8">조선 용접공</td>
+                            <td class="p-6 py-8"><span class="inline-block px-4 py-1.5 bg-teal-100 text-teal-800 rounded-full text-xs font-bold">베트남</span></td>
+                            <td class="p-6 py-8 text-slate-600"><span class="font-bold text-slate-900">삼성중공업</span> 등</td>
+                            <td class="p-6 py-8 text-right"><span class="font-black text-3xl text-teal-600">97</span><span class="text-sm font-medium text-slate-500 ml-1">명</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success-stories" class="py-24 bg-[#F8FAFC] overflow-hidden">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <i data-lucide="message-circle" class="w-8 h-8 text-[#11CAA0] mx-auto mb-4"></i>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">SettleK와 함께 쓴 성공 스토리</h3>
+                <p class="text-lg text-slate-500 font-light">현장에서 증명된 SettleK의 진정성을 확인해보세요.</p>
+            </div>
+
+            <!-- Carousel Container -->
+            <div class="relative group">
+                <div id="story-carousel" class="flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 px-4 -mx-4 scroll-smooth hide-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
+                    
+                    <!-- Card 1 -->
+                    <div class="flex-shrink-0 snap-center w-[85vw] md:w-[400px] bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between h-[320px] relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+                        <i data-lucide="quote" class="w-32 h-32 text-slate-50 absolute -top-4 -right-4 fill-current transform -scale-x-100"></i>
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-700 font-bold text-[10px] rounded-full uppercase tracking-wider mb-4">For Companies</span>
+                            <p class="text-base text-slate-700 leading-relaxed font-medium">
+                                "24시간 모니터링 시스템 덕분에 이탈 걱정 없이 프로젝트에만 집중할 수 있었습니다."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 relative z-10 mt-6 pt-6 border-t border-slate-50">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150" alt="김OO 소장" class="w-12 h-12 rounded-full object-cover shadow-sm" />
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">김OO 소장</p>
+                                <p class="text-xs font-semibold text-slate-500 mt-0.5">한화오션 협력사</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="flex-shrink-0 snap-center w-[85vw] md:w-[400px] bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between h-[320px] relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+                        <i data-lucide="quote" class="w-32 h-32 text-slate-50 absolute -top-4 -right-4 fill-current transform -scale-x-100"></i>
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 bg-teal-50 text-teal-700 font-bold text-[10px] rounded-full uppercase tracking-wider mb-4">For Workers</span>
+                            <p class="text-base text-slate-700 leading-relaxed font-medium">
+                                "병원 예약부터 주거지까지 도와줘서 든든했습니다. 가족이 생긴 기분이에요."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 relative z-10 mt-6 pt-6 border-t border-slate-50">
+                            <img src="assets/images/photo-1504328345606-18bbc8c9d7d1.avif" alt="응우옌 씨" class="w-12 h-12 rounded-full object-cover shadow-sm" />
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">응우옌 씨</p>
+                                <p class="text-xs font-semibold text-teal-600 mt-0.5">베트남 용접공</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="flex-shrink-0 snap-center w-[85vw] md:w-[400px] bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between h-[320px] relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+                        <i data-lucide="quote" class="w-32 h-32 text-slate-50 absolute -top-4 -right-4 fill-current transform -scale-x-100"></i>
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-700 font-bold text-[10px] rounded-full uppercase tracking-wider mb-4">For Companies</span>
+                            <p class="text-base text-slate-700 leading-relaxed font-medium">
+                                "서류 행정부터 현장 배치까지 원스톱으로 처리되어 도입 기간이 절반으로 단축되었습니다."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 relative z-10 mt-6 pt-6 border-t border-slate-50">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" alt="박OO 이사" class="w-12 h-12 rounded-full object-cover shadow-sm" />
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">박OO 이사</p>
+                                <p class="text-xs font-semibold text-slate-500 mt-0.5">삼성중공업 협력사</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="flex-shrink-0 snap-center w-[85vw] md:w-[400px] bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between h-[320px] relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+                        <i data-lucide="quote" class="w-32 h-32 text-slate-50 absolute -top-4 -right-4 fill-current transform -scale-x-100"></i>
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 bg-teal-50 text-teal-700 font-bold text-[10px] rounded-full uppercase tracking-wider mb-4">For Workers</span>
+                            <p class="text-base text-slate-700 leading-relaxed font-medium">
+                                "출국 전 체계적인 기술 교육 덕분에 한국 현장에 빠르게 적응했습니다."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 relative z-10 mt-6 pt-6 border-t border-slate-50">
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=150" alt="알리셰르 씨" class="w-12 h-12 rounded-full object-cover shadow-sm" />
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">알리셰르 씨</p>
+                                <p class="text-xs font-semibold text-teal-600 mt-0.5">우즈벡 전기원</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Swipe Hint / Custom Scrollbar Track -->
+                <div class="w-full flex justify-center mt-4 hidden md:flex">
+                    <div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                        <div id="scroll-progress" class="w-1/2 h-full bg-teal-400 rounded-full shadow-[0_0_10px_rgba(20,184,166,0.5)]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 lg:py-32 bg-white border-b border-slate-100 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-[#11CAA0] tracking-widest uppercase mb-4">FAQ</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">자주 묻는 질문</h3>
+                <p class="text-lg text-slate-500 font-light">SettleK의 외국인 인력 도입 서비스에 대해 기업 담당자분들이 가장 많이 묻는 질문입니다.</p>
+            </div>
+
+            <div class="space-y-4">
+                <details class="group bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-900 group-open:text-[#11CAA0] transition-colors">
+                        <span class="pr-6">Q1. 외국인 근로자 도입부터 현장 배치까지 기간은 얼마나 걸리나요?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-teal-500 transition-transform duration-300"></i>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
+                        비자 종류와 국가에 따라 상이하나, 당사의 사전 검증 풀을 활용할 경우 평균 2~3개월 내에 신속한 현장 배치가 가능합니다.
+                    </div>
+                </details>
+                <details class="group bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-900 group-open:text-[#11CAA0] transition-colors">
+                        <span class="pr-6">Q2. 근로자가 무단 이탈할 경우 어떤 조치가 취해지나요?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-teal-500 transition-transform duration-300"></i>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
+                        SettleK는 이탈률 0%를 유지하고 있습니다. 만약의 사태 발생 시, 전담 컨트롤 센터가 24시간 즉각 대응하며 기업의 피해를 최소화하기 위한 대체 인력 투입 프로세스가 마련되어 있습니다.
+                    </div>
+                </details>
+                <details class="group bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-900 group-open:text-[#11CAA0] transition-colors">
+                        <span class="pr-6">Q3. 입국 후 근로자들의 거주지나 병원 등의 관리는 기업이 직접 해야 하나요?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-teal-500 transition-transform duration-300"></i>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
+                        아닙니다. SettleK의 '라이프 인큐베이터' 전담 매니저가 주거, 의료, 행정 등 정착에 필요한 모든 생활 밀착 케어를 직접 지원하여 기업의 관리 부담을 없앱니다.
+                    </div>
+                </details>
+                <details class="group bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-900 group-open:text-[#11CAA0] transition-colors">
+                        <span class="pr-6">Q4. 근로자들의 한국어 수준이나 기술 검증은 어떻게 이루어지나요?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-teal-500 transition-transform duration-300"></i>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
+                        현지 교육 센터에서 TOPIK 등급 취득 및 ISO 국제 표준 기반 기술 테스트를 거치며, 한국인 기술 전문가가 대면으로 2차 검증을 진행한 후 선발합니다.
+                    </div>
+                </details>
+                <details class="group bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-900 group-open:text-[#11CAA0] transition-colors">
+                        <span class="pr-6">Q5. 대규모 인원(100명 이상)도 한 번에 송출이 가능한가요?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-teal-500 transition-transform duration-300"></i>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
+                        네, 가능합니다. 10여 개국의 글로벌 네트워크와 인도네시아 8만 명 송출 MOU를 바탕으로, 기업이 원하는 규모의 인력을 안정적이고 지속적으로 공급할 수 있습니다.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="py-32 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <!-- Left: Text -->
+            <div>
+                <span class="text-sm font-bold text-teal-600 tracking-widest uppercase mb-4 block">Ready to Start?</span>
+                <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">인력난 해소, <br/>SettleK와 함께 지금 시작하세요.</h3>
+                <p class="text-lg text-slate-600 mt-6 leading-relaxed">
+                    간단한 정보만 남겨주시면, SettleK의 전담 컨설턴트가 24시간 이내에 귀사에 최적화된 인력 도입 솔루션을 제안해 드립니다.
+                </p>
+            </div>
+            
+            <!-- Right: Form -->
+            <div class="bg-white rounded-3xl shadow-2xl p-10 md:p-12">
+                <form class="space-y-6">
+                    <div>
+                        <label for="company" class="block text-sm font-semibold text-slate-700 mb-2">회사명</label>
+                        <input type="text" id="company" placeholder="예: (주)세틀케이" class="w-full h-14 px-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+                    </div>
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">담당자 성함</label>
+                        <input type="text" id="name" placeholder="예: 홍길동" class="w-full h-14 px-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">이메일</label>
+                        <input type="email" id="email" placeholder="예: contact@company.com" class="w-full h-14 px-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all">
+                    </div>
+                    <div>
+                        <label for="visa-type" class="block text-sm font-semibold text-slate-700 mb-2">필요 직군 및 비자</label>
+                        <select id="visa-type" class="w-full h-14 px-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all text-slate-700">
+                            <option value="">선택해주세요</option>
+                            <option value="e6">E-6 (예술·흥행 인력)</option>
+                            <option value="e7">E-7 (전문직 노동자)</option>
+                            <option value="e8">E-8 (계절/공공형 근로자)</option>
+                            <option value="e10">E-10 (선원 근로자)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full h-14 bg-teal-600 hover:bg-teal-700 text-white font-bold text-lg rounded-xl transition-colors mt-4 shadow-lg shadow-teal-500/30">
+                        문의하기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-900 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+                <div class="lg:col-span-5">
+                    <span class="text-4xl font-extrabold tracking-tighter text-white block mb-6">
+                        SETTLE<span class="text-teal-400">K</span>
+                    </span>
+                    <p class="text-slate-400 text-lg leading-relaxed max-w-md">
+                        단순한 송출을 넘어 경제와 기업이 외국인 근로자와 함께 동반 성장할 수 있도록 돕겠습니다.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-7 lg:pl-10">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Contact Us</h4>
+                    <ul class="space-y-6">
+                        <li>
+                            <a href="tel:+821071900953" class="group flex items-center gap-5 text-slate-300 hover:text-teal-400 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-teal-900/50 transition-colors flex-shrink-0">
+                                    <i data-lucide="phone-call" class="w-5 h-5 text-teal-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500 mb-0.5 uppercase tracking-wider font-semibold">Phone</p>
+                                    <p class="text-xl font-bold text-white group-hover:text-teal-400">+82 10-7190-0953</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:calebchina@naver.com" class="group flex items-center gap-5 text-slate-300 hover:text-teal-400 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-teal-900/50 transition-colors flex-shrink-0">
+                                    <i data-lucide="mail" class="w-5 h-5 text-teal-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500 mb-0.5 uppercase tracking-wider font-semibold">Email</p>
+                                    <p class="text-xl font-bold text-white group-hover:text-teal-400">calebchina@naver.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-start gap-5 text-slate-300">
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-teal-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500 mb-0.5 uppercase tracking-wider font-semibold">Address</p>
+                                    <p class="text-lg font-medium text-slate-300 leading-relaxed">
+                                        서울특별시 영등포구 여의대방로65길 17, <br class="hidden sm:block"/>서린빌딩 710호
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+                <p>&copy; 2026 SettleK. All Rights Reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            const logoText = document.getElementById('logo-text');
+            const logoK = document.getElementById('logo-k');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navBtn = document.getElementById('nav-btn');
+            const menuIcon = document.getElementById('mobile-menu-btn');
+
+            if (window.scrollY > 20) {
+                nav.classList.remove('nav-top');
+                nav.classList.add('nav-scrolled');
+                logoText.classList.add('logo-scrolled');
+                logoK.classList.add('logo-k-scrolled');
+                menuIcon.classList.add('text-slate-800');
+                menuIcon.classList.remove('text-white');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-teal-50', 'hover:text-white');
+                    link.classList.add('menu-scrolled');
+                });
+                
+                navBtn.classList.remove('bg-white', 'text-teal-900', 'hover:bg-teal-50');
+                navBtn.classList.add('btn-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+                nav.classList.add('nav-top');
+                logoText.classList.remove('logo-scrolled');
+                logoK.classList.remove('logo-k-scrolled');
+                menuIcon.classList.remove('text-slate-800');
+                menuIcon.classList.add('text-white');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('menu-scrolled');
+                    link.classList.add('text-teal-50', 'hover:text-white');
+                });
+                
+                navBtn.classList.remove('btn-scrolled');
+                navBtn.classList.add('bg-white', 'text-teal-900', 'hover:bg-teal-50');
+            }
+        });
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            if(mobileMenu.classList.contains('hidden')) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Carousel Scroll Progress Logic
+        const carousel = document.getElementById('story-carousel');
+        const scrollProgress = document.getElementById('scroll-progress');
+
+        if (carousel && scrollProgress) {
+            const updateProgress = () => {
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                if (maxScroll <= 0) {
+                    scrollProgress.style.width = '100%';
+                    return;
+                }
+                const scrollPercentage = (carousel.scrollLeft / maxScroll) * 100;
+                // 베이스 너비를 주어 시작점을 명확히 함
+                scrollProgress.style.width = Math.max(25, scrollPercentage) + '%';
+            };
+
+            carousel.addEventListener('scroll', updateProgress);
+            window.addEventListener('resize', updateProgress);
+            
+            // Initial call
+            updateProgress();
+        }
+    </script>
+</body>
+</html>
